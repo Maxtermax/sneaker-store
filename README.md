@@ -1,1 +1,1 @@
-# atomic-client
+# Sneaker store
