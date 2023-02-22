@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "actions/*": ["src/core/actions/*"],
+      "@core/*": ["src/core/*"],
+      "@views/*": ["src/core/views/*"],
+      "@components/*": ["src/core/views/components/*"],
+      "@factory/*": ["src/core/factory/*"],
+      "@hooks/*": ["src/core/views/hooks/*"],
+      "@constants": ["src/core/constants"],
+      "@observers/*": ["src/core/observers/*"],
+      "@contexts/*": ["src/core/contexts"],
+      "@src/*": ["src/*"],
+      "@hermes-io/*": ["../../*"],
+      "react": ["../../node_modules/react"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
