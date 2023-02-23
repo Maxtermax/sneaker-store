@@ -1,14 +1,22 @@
 {
-  "name": "atomic-client",
+  "name": "sneaker-store",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/register": "^7.18.9",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "react": "18.2.0",
+    "hermes-io": "^2.2.6",
+    "react": "^18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "esbuild-loader": "^2.20.0",
+    "eslint": "^8.29.0",
+    "eslint-plugin-react": "^7.31.11",
+    "react-app-rewired": "^2.2.1"
   },
   "scripts": {
     "start": "PORT=8000 react-app-rewired start",
@@ -35,14 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/register": "^7.18.9",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "esbuild-loader": "^2.20.0",
-    "eslint": "^8.29.0",
-    "eslint-plugin-react": "^7.31.11",
-    "react-app-rewired": "^2.2.1"
   }
 }

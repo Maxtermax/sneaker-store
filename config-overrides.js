@@ -17,8 +17,6 @@ module.exports = {
         "@observers": path.resolve(__dirname, "src/core/observers"),
         "@theme": path.resolve(__dirname, "src/core/theme"),
         "@src": path.resolve(__dirname, "src"),
-        "hermes-io": path.resolve(__dirname, "../../"),
-        "react": path.resolve(__dirname, "../../node_modules/react"),
       },
     };
     config.module.rules.push({
