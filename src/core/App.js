@@ -22,13 +22,6 @@ const sneakerList = [
     name: 'Adidas Forum',
     price: '200'
   },
-  {
-    id: '3',
-    image: '/assets/images/addidas.webp',
-    description: 'Bad Bunny Forum Buckle Low sneakers',
-    name: 'Adidas Forum',
-    price: '200'
-  }
 ]
 
 const productsStore = new Map();
