@@ -4,7 +4,7 @@ module.exports = {
   webpack: function (config) {
     config.devtool = "source-map";
     config.output.filename = "static/js/bundle.js";
-    // config.mode = 'development';
+    config.mode = 'development';
     config.optimization = {
       minimize: false,
     };
