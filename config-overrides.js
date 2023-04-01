@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = {
   webpack: function (config) {
     config.devtool = "source-map";
+    config.output.filename = "static/js/bundle.js";
     config.resolve = {
       extensions: [".js", ".html"],
       alias: {
@@ -27,7 +28,6 @@ module.exports = {
         target: "es2020",
       },
     });
-    console.log(JSON.stringify(config));
     return config;
   },
 };
