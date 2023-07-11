@@ -19,6 +19,7 @@ module.exports = {
         "@hooks": path.resolve(__dirname, "src/core/views/hooks"),
         "@constants": path.resolve(__dirname, "src/core/constants"),
         "@contexts": path.resolve(__dirname, "src/core/contexts"),
+        "@utils": path.resolve(__dirname, "src/utils"),
         "@observers": path.resolve(__dirname, "src/core/observers"),
         "@theme": path.resolve(__dirname, "src/core/theme"),
         "@src": path.resolve(__dirname, "src"),

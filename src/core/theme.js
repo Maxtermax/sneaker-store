@@ -5,6 +5,7 @@ const theme = {
     third: "#011638",
     fourth: "#fafafa",
     fifth: "#E3170A",
+    transparenGrey: "rgba(230, 230, 230, 0.5)",
     contrast: {
       primary: "#fff",
       secondary: "#1A090D",
@@ -12,6 +13,12 @@ const theme = {
       fifth: "#fff",
       fourth: "#000",
     },
+  },
+  sizes: {
+    xlarge: '30px',
+    large: '20px',
+    medium: '16px',
+    small: '14px',
   },
   typography: {
     primary: {

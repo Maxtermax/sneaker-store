@@ -1,14 +1,16 @@
 import React from "react";
 import {
-  Image,
-  List,
   Card,
   Content,
+  Button,
   Title,
   Description,
   Price,
-  Button,
+  PriceWrapper,
+  List,
 } from "./Styles";
+import { formatNumberToCurrency } from "@utils/formatter";
+import Media from "@components/Media/Media";
 import ProductsObserver from "@observers/products";
 import * as contexts from "@contexts";
 
@@ -30,11 +32,29 @@ const Products = (props = {}) => {
     <List variant={props.variant}>
       {data.map((product = {}) => (
         <Card key={product.id}>
-          <Image title={product.name} src={product.image} />
+          <Media
+            discount={product.discount}
+            sizes={product.sizes}
+            data={product.images}
+          />
           <Content active={props.active}>
             <Title title={product.name}>{product.name}</Title>
-            <Description title={product.description}>{product.description}</Description>
-            <Price title={product.price}>${product.price}</Price>
+            <Description title={product.description}>
+              {product.description}
+            </Description>
+            <PriceWrapper>
+              {product.discount > 0 ? (
+                <>
+                  <Price title={"price before:" + product.price} incorrect>
+                    ${formatNumberToCurrency(product.price)}
+                  </Price>
+                  <span>/</span>
+                </>
+              ) : null}
+              <Price title={product.value}>
+                ${formatNumberToCurrency(product.value)}
+              </Price>
+            </PriceWrapper>
             <Button
               title={product.selected ? "Remove from car" : "Add to car"}
               onClick={() =>

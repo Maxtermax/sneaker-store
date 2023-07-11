@@ -11,6 +11,7 @@
       "@constants": ["src/core/constants"],
       "@observers/*": ["src/core/observers/*"],
       "@contexts/*": ["src/core/contexts"],
+      "@utils/*": ["src/utils"],
       "@src/*": ["src/*"],
       "@hermes-io/*": ["../../*"],
       "react": ["../../node_modules/react"]
