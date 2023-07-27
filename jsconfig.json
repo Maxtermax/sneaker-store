@@ -6,6 +6,7 @@
       "@core/*": ["src/core/*"],
       "@views/*": ["src/core/views/*"],
       "@components/*": ["src/core/views/components/*"],
+      "@features/*": ["src/core/views/features/*"],
       "@factory/*": ["src/core/factory/*"],
       "@hooks/*": ["src/core/views/hooks/*"],
       "@constants": ["src/core/constants"],

@@ -17,6 +17,7 @@ module.exports = {
         "@components": path.resolve(__dirname, "src/core/views/components"),
         "@factory": path.resolve(__dirname, "src/core/factory"),
         "@hooks": path.resolve(__dirname, "src/core/views/hooks"),
+        "@features": path.resolve(__dirname, "src/core/views/features"),
         "@constants": path.resolve(__dirname, "src/core/constants"),
         "@contexts": path.resolve(__dirname, "src/core/contexts"),
         "@utils": path.resolve(__dirname, "src/utils"),

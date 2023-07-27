@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Products from "@components/Products/Products";
+import ProductsList from "@core/views/components/ProductList/ProductList";
 import { Anchor, Content, Header, Total, WrapperStyles } from "./Styles";
 
 const calculateTotal = (data = []) =>
@@ -44,7 +44,7 @@ const ShoppingCar = (props = {}) => {
       {showProducts && total > 0 ? (
         <Wrapper total={total} anchor={anchorRef.current}>
           <Content>
-            <Products active={true} data={data} />
+            <ProductsList active={true} data={data} />
             <Total>Total: ${total}</Total>
           </Content>
         </Wrapper>
