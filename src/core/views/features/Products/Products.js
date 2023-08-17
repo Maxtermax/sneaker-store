@@ -15,9 +15,11 @@ export default function Products(props = {}) {
       context: contexts.products,
     });
   };
+
   return (
     <ProductsList
       data={data}
+      variant={props.variant}
       onAdd={handleAddProduct}
       onRemove={handleRemoveProduct}
     />
