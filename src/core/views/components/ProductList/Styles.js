@@ -13,4 +13,5 @@ export const List = styled.ul`
   padding: 0;
   justify-content: center;
   max-width: 1200px;
+  margin: 0px auto;
 `;
