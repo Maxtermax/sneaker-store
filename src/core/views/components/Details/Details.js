@@ -33,8 +33,7 @@ const Media = (props) => {
   const dataLength = image.data.length;
   const { sizes } = useSizes();
   const hasSizes = sizes.width && sizes.height;
-  const isNotMobile = sizes.width <= 500;
-  console.log({ sizes });
+  const isNotMobile = window.innerWidth > 500;
   const { imageIndex, setImageIndex } = useMediaImageIndex({
     dataLength,
     isActive: false,
@@ -77,7 +76,7 @@ const Media = (props) => {
           </ThumbnailButton>
         ))}
       </ThumbnailContainer>
-      {isNotMobile ? <Arrows onBack={handleBack} onNext={handleNext} /> : null}
+      {isNotMobile ? <Arrows isVisible onBack={handleBack} onNext={handleNext} /> : null}
     </MediaContainer>
   );
 };
