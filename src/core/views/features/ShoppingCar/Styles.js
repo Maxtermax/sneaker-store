@@ -38,11 +38,17 @@ export const Header = styled.header`
 
 export const Content = styled.div`
   background: ${({ theme = {} }) => theme.colors.primary};
-  width: 500px;
+  width: 430px;
   height: 100%;
   position: fixed;
-  top: 80px;
+  top: 0px;
   z-index: 2;
+  overflow-y: auto;
+  & .close-icon {
+    position: relative;
+    left: calc(100% - 50px);
+    top: 10px;
+  }
 `;
 
 export const Total = styled.div`

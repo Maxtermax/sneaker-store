@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Container, Content, Header, Total } from "./Styles";
+import { Content, Header, Total } from "./Styles";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
@@ -7,6 +7,10 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import theme from "@theme";
 import { Slide } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
+import ProductsList from '@core/views/components/ProductList/ProductList';
+import { ADD_PRODUCTS, REMOVE_PRODUCTS } from '@core/constants';
+import { ProductsContext } from '@core/contexts/Products';
+import { ProductsObserver } from '@core/observers/Products';
 
 const calculateTotal = (data = []) =>
   data.reduce((acc, { price = 0 }) => acc + Number(price), 0);
@@ -28,6 +32,22 @@ const ShoppingCar = (props = {}) => {
   const total = calculateTotal(data);
 
   const handleDisplayCar = () => setShowProducts(!showProducts);
+  const handleAdd = (product) => {
+    ProductsObserver.notify({
+      value: { type: ADD_PRODUCTS, payload: product },
+      context: ProductsContext,
+    });
+  }
+  const handleRemove = (product) => {
+    ProductsObserver.notify({
+      value: {
+        payload: product,
+        type: REMOVE_PRODUCTS,
+      },
+      context: ProductsContext,
+    });
+
+  }
 
   return (
     <>
@@ -50,10 +70,11 @@ const ShoppingCar = (props = {}) => {
           unmountOnExit
         >
           <Content>
-            <Total>Total: ${total}</Total>
-            <IconButton onClick={handleDisplayCar}>
+            <IconButton className='close-icon' onClick={handleDisplayCar}>
               <CloseIcon/>
             </IconButton>
+            <ProductsList data={data} onAdd={handleAdd} onRemove={handleRemove} />
+            <Total>Total: ${total}</Total>
           </Content>
         </Slide>
       </Header>
