@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useObserver } from 'hermes-io';
-import { ProductsObserver } from "../observers/Product";
+import { ProductsObserver } from "../observers/Products";
 import { ProductsContext } from "../contexts/Products";
 import productsStore from "@views/store";
 import { ADD_PRODUCTS, REMOVE_PRODUCTS } from '@core/constants';

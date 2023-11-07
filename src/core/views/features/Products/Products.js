@@ -1,6 +1,6 @@
 import React from "react";
 import ProductsList from "@components/ProductList/ProductList";
-import { ProductsObserver } from "@core/observers/Product";
+import { ProductsObserver } from "@core/observers/Products";
 import { ADD_PRODUCTS, REMOVE_PRODUCTS } from "@core/constants";
 import { ProductsContext } from "@core/contexts/Products";
 import { Details } from '@core/views/components/Details/Details';
