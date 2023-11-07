@@ -1,9 +1,19 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { Canvas } from "./Styles";
 import { MAGNIFYING_SIZE, ZOOM_FACTOR } from "@core/constants";
 
+function useDeviceDetect() {
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  useEffect(() => {
+    if (!window.matchMedia) return;
+    setIsTouchDevice(window.matchMedia("(pointer:coarse)").matches);
+  }, []);
+  return isTouchDevice;
+}
+
 export const Zoom = (props) => {
   const image = useRef(new Image());
+  const isTouchDevice = useDeviceDetect();
 
   const drawBackground = useCallback(() => {
     const canvas = document.getElementById("zoom");
@@ -38,6 +48,7 @@ export const Zoom = (props) => {
   }, []);
 
   const handleMouseMove = (e) => {
+    if (isTouchDevice) return;
     const canvas = e.target;
     const ctx = canvas.getContext("2d");
     // eslint-disable-next-line no-self-assign

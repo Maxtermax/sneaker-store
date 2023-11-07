@@ -7,6 +7,11 @@ export const ThumbnailContainer = styled.div`
   bottom: 10px;
   width: 100%;
   gap: 100px;
+  @media (max-width: 580px) {
+    width: 400px;
+    gap: 10px;
+    left: calc(50% - 200px);
+  }
 `;
 
 export const ThumbnailButton = styled.button`
@@ -51,6 +56,7 @@ export const MediaContainer = styled.div`
   }
   & .arrows {
     position: absolute;
+    top: calc(50% - 30px);
     width: calc(100% - 20px);
     & button {
       background: none;
