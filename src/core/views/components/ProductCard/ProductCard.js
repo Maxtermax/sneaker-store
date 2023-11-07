@@ -15,16 +15,10 @@ export default function ProductCard(props = {}) {
   const { data = {} } = props;
   return (
     <Card>
-      <Media
-        discount={data.discount}
-        sizes={data.sizes}
-        data={data.images}
-      />
+      <Media discount={data.discount} sizes={data.sizes} data={data.images} />
       <Content active={props.active}>
         <Title title={data.name}>{data.name}</Title>
-        <Description title={data.description}>
-          {data.description}
-        </Description>
+        <Description title={data.description}>{data.description}</Description>
         <PriceWrapper>
           {data.discount > 0 ? (
             <>

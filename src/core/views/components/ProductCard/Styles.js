@@ -11,10 +11,11 @@ export const Content = styled.div`
   background: ${({ theme = {}, active }) =>
     active ? theme.colors.contrast.secondary : theme.colors.secondary};
   flex-direction: column;
-  line-height: 1.3;
-  padding-top: 25px;
-  padding-left: 25px;
-  padding-bottom: 25px;
+  line-height: 1.1;
+  padding-top: 22px;
+  padding-left: 22px;
+  padding-right: 22px;
+  padding-bottom: 22px;
   transition: all 0.25s ease-in;
   & p,
   h2,
@@ -22,10 +23,17 @@ export const Content = styled.div`
     color: ${({ theme = {}, active }) =>
       active ? theme.colors.contrast.primary : theme.colors.primary};
   }
+  & button {
+    right: 4px;
+    top: 4px;
+  }
   &:hover {
     background: ${({ theme = {} }) => theme.colors.contrast.secondary};
     padding-top: 30px;
     padding-bottom: 30px;
+  }
+  &:hover button {
+    top: 12px;
   }
   &:hover h2 {
     color: ${({ theme = {} }) => theme.colors.contrast.primary};
@@ -44,9 +52,11 @@ export const Content = styled.div`
 export const Title = styled.h2`
   color: ${({ theme = {} }) => theme.colors.primary}};
   text-transform: capitalize;
-  font-size: 2.5rem;
+  font-size: ${({ theme = {} }) => theme.typography.sizes.medium};
   font-family: ${({ theme = {} }) => theme.typography.primary.fontFamily};
+  font-size: ${({ theme = {} }) => theme.typography.primary.fontFamily};
   font-weight: bold;
+  line-heigth: 1.1;
   margin: 0;
 `;
 

@@ -1,27 +1,25 @@
-import React, { useState, useRef, useEffect } from "react";
-import Products from "@features/Products/Products";
-import { Anchor, Content, Header, Total, WrapperStyles } from "./Styles";
+import React, { useState, useRef } from "react";
+import { Container, Content, Header, Total } from "./Styles";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import theme from "@theme";
+import { Slide } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 
 const calculateTotal = (data = []) =>
   data.reduce((acc, { price = 0 }) => acc + Number(price), 0);
 
-const Wrapper = (props) => {
-  const contentRef = useRef(null);
-  useEffect(() => {
-    const { anchor = {} } = props;
-    const { left = 0 } = anchor;
-    const padding = -10;
-    const content = contentRef.current;
-    const { width } = content.getBoundingClientRect();
-    content.style.left = `${left - width - padding}px`;
-  }, []);
-
-  return (
-    <div style={{ ...WrapperStyles }} ref={contentRef}>
-      {props.children}
-    </div>
-  );
-};
+const StyledBadge = styled(Badge)(() => ({
+  "& .MuiBadge-badge": {
+    background: theme.colors.fifth,
+    color: "white",
+    right: -3,
+    top: 13,
+    padding: "0 4px",
+  },
+}));
 
 const ShoppingCar = (props = {}) => {
   const [showProducts, setShowProducts] = useState(false);
@@ -29,26 +27,36 @@ const ShoppingCar = (props = {}) => {
   const { data = [] } = props;
   const total = calculateTotal(data);
 
-  const handleDisplayCar = (e) => {
-    anchorRef.current = e.target.getBoundingClientRect();
-    setShowProducts(!showProducts);
-  };
+  const handleDisplayCar = () => setShowProducts(!showProducts);
 
   return (
     <>
       <Header>
-        <Anchor onClick={handleDisplayCar}>
-          🛒 {data.length ? data.length : null}
-        </Anchor>
-      </Header>
-      {showProducts && total > 0 ? (
-        <Wrapper total={total} anchor={anchorRef.current}>
+        <IconButton
+          ref={anchorRef}
+          className="car"
+          aria-label="car"
+          onClick={handleDisplayCar}
+        >
+          <StyledBadge badgeContent={data.length}>
+            <ShoppingCartIcon />
+          </StyledBadge>
+        </IconButton>
+        <Slide
+          container={anchorRef.current}
+          direction="left"
+          in={showProducts}
+          mountOnEnter
+          unmountOnExit
+        >
           <Content>
-            <Products variant="list" data={data} />
             <Total>Total: ${total}</Total>
+            <IconButton onClick={handleDisplayCar}>
+              <CloseIcon/>
+            </IconButton>
           </Content>
-        </Wrapper>
-      ) : null}
+        </Slide>
+      </Header>
     </>
   );
 };

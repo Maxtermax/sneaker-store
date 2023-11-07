@@ -19,7 +19,6 @@ export const ArrowWrapper = styled.button`
 export const Container = styled.div`
   align-self: center;
   display: flex;
-  display: flex;
   padding-left: 10px;
   padding-right: 10px;
   visibility: ${({ isVisible = false }) => (isVisible ? "visible" : "hidden")};

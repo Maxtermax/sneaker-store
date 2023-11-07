@@ -15,6 +15,9 @@ export const Anchor = styled.div`
   height: 20px;
   margin-right: 50px;
   transition: all 0.35s;
+  & svg {
+    color: white;
+  }
 `;
 
 export const Header = styled.header`
@@ -25,13 +28,21 @@ export const Header = styled.header`
   display: flex;
   justify-content: flex-end;
   z-index: 2;
+  .car {
+    margin-right: 40px;
+  }
+  & svg {
+    color: white;
+  }
 `;
 
 export const Content = styled.div`
   background: ${({ theme = {} }) => theme.colors.primary};
-  ul {
-    margin: 0px;
-  }
+  width: 500px;
+  height: 100%;
+  position: fixed;
+  top: 80px;
+  z-index: 2;
 `;
 
 export const Total = styled.div`
@@ -46,14 +57,10 @@ export const Total = styled.div`
   margin: 20px auto;
 `;
 
-export const WrapperStyles = {
-  background: theme.colors.primary,
-  transform: "scale(0.7)",
-  top: "-10px",
-  overflowY: "auto",
-  position: "fixed",
-  padding: "30px",
-  transition: "all 0.35s",
-  width: "800px",
-  zIndex: "2",
-};
+export const Container = styled.div`
+  width: 500px;
+  z-index: 2;
+  position: absolute;
+  top: 70px;
+  right: 0px;
+`;

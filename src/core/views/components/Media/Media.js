@@ -1,38 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Arrows from "@components/Arrows/Arrows";
 import Sizes from "@components/Sizes/Sizes";
 import Indicator from "@components/Indicator/Indicator";
 import { Image, DiscountTag, DiscountValue } from "./Styles";
-import { ANIMATION_TIME } from "@constants";
-
-function useMediaImageIndex({ dataLength, isActive }) {
-  const [imageIndex, setImageIndex] = useState(0);
-  useEffect(() => {
-    let timeoutId;
-    function setAnimation() {
-      timeoutId = setInterval(() => {
-        let nextImageIndex = imageIndex + 1;
-        const hasReachedEnd = nextImageIndex === dataLength;
-        if (hasReachedEnd) nextImageIndex = 0;
-        setImageIndex(nextImageIndex);
-      }, ANIMATION_TIME);
-    }
-    if (!isActive) {
-      clearInterval(timeoutId);
-    } else {
-      setAnimation();
-    }
-    return () => {
-      clearInterval(timeoutId);
-    };
-  }, [imageIndex, dataLength, isActive]);
-
-  return { imageIndex, setImageIndex }
-}
+import { ProductDetailsContext } from '@contexts/Zoom';
+import { ProductDetailsObserver } from '@observers/Zoom';
+import { OPEN_PRODUCT_DETAILS, SET_SIZES } from '@core/constants';
+import { useMediaImageIndex } from '../../../hooks/useMediaImageIndex';
 
 export default function Media({ data = [], sizes = [], discount = 0 }) {
   const [isActive, setActive] = useState(false);
-  const dataLength = data.length;
+  const dataLength = data[SET_SIZES.MEDIUM].length;
   const { imageIndex, setImageIndex } = useMediaImageIndex({ dataLength, isActive });
 
   const handleSelectIndex = (index) => setImageIndex(index);
@@ -41,25 +19,47 @@ export default function Media({ data = [], sizes = [], discount = 0 }) {
 
   const handleMouseLeave = () => setActive(false);
 
-  const handleBack = () => {
+  const handleBack = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     let nextImageIndex = imageIndex - 1;
     const hasReachedBegin = nextImageIndex < 0;
     if (hasReachedBegin) nextImageIndex = 0;
     setImageIndex(nextImageIndex);
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     let nextImageIndex = imageIndex + 1;
     const hasReachedEnd = nextImageIndex === dataLength;
     if (hasReachedEnd) nextImageIndex = 0;
     setImageIndex(nextImageIndex);
   };
 
+  const handleProductDetails = () => {
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const size = vw <= SET_SIZES.MEDIUM ? SET_SIZES.MEDIUM : SET_SIZES.LARGE;
+    ProductDetailsObserver.notify({
+      value: {
+        type: OPEN_PRODUCT_DETAILS,
+        payload:{
+          sizes,
+          thumbnails: data[SET_SIZES.SMALL],
+          data: data[size],
+          discount
+        } 
+      },
+      context: ProductDetailsContext,
+    });
+  }
+
   return (
     <Image
+      onClick={handleProductDetails}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
-      src={data[imageIndex]}
+      src={data['500'][imageIndex]}
     >
       {discount > 0 ? (
         <DiscountTag>

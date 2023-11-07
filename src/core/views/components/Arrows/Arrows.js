@@ -1,16 +1,20 @@
 import React from "react";
 import { ArrowWrapper, Container } from "./Styles";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-export default function Arrows({ isVisible = false, onBack = () => null, onNext = () => null }) {
+export default function Arrows({
+  isVisible = false,
+  onBack = () => null,
+  onNext = () => null,
+}) {
   return (
-    <Container isVisible={isVisible}>
-      <ArrowWrapper onClick={onBack}>
-        <ArrowBackIosIcon />
+    <Container isVisible={isVisible} className="arrows">
+      <ArrowWrapper onClick={onBack} className="arrows__left">
+        <ArrowBackIcon />
       </ArrowWrapper>
-      <ArrowWrapper onClick={onNext}>
-        <ArrowForwardIosIcon />
+      <ArrowWrapper onClick={onNext} className="arrows__right">
+        <ArrowForwardIcon />
       </ArrowWrapper>
     </Container>
   );

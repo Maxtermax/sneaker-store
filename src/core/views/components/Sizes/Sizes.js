@@ -3,7 +3,9 @@ import { Container, Size } from "./Styles";
 
 export default function Sizes({ data = [] }) {
   const [selectedSize, setSelectedSize] = useState(null);
-  const handleSelectSize = (value) => {
+  const handleSelectSize = (value) => (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     const isAlreadySelected = value === selectedSize;
     if (isAlreadySelected) {
       setSelectedSize(null);
@@ -17,7 +19,7 @@ export default function Sizes({ data = [] }) {
       {data.map((value) => (
         <Size
           isSelected={selectedSize === value}
-          onClick={() => handleSelectSize(value)}
+          onClick={handleSelectSize(value)}
           title={value}
           key={value}
         >

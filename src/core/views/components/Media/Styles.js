@@ -15,7 +15,7 @@ export const DiscountTag = styled.div`
 export const DiscountValue = styled.span`
   color: ${({ theme = {} }) => theme.colors.contrast.primary};
   font-family: ${({ theme = {} }) => theme.typography.primary.fontFamily};
-  font-size: ${({ theme = {} }) => theme.sizes.large};
+  font-size: ${({ theme = {} }) => theme.typography.sizes.large};
   position: absolute;
   margin-left: -35px;
   margin-top: -25px;
@@ -28,6 +28,7 @@ export const Image = styled.div`
   background-size: 78%;
   background-repeat: no-repeat;
   background-position: center bottom;
+  cursor: zoom-in;
   display: flex;
   transition: all 0.3s;
   position: relative;

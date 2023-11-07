@@ -3,9 +3,9 @@ import { List } from "./Styles";
 import ProductCard from "@components/ProductCard/ProductCard";
 
 const ProductsList = (props = {}) => {
-  const { data = [], variant = "grid" } = props;
+  const { data = [] } = props;
   return (
-    <List variant={variant}>
+    <List>
       {data.map((product = {}) => (
         <ProductCard
           key={product.id}

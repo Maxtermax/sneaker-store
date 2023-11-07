@@ -26,7 +26,7 @@ export const Size = styled.li`
   cursor: pointer;
   display: flex;
   place-content: center;
-  font-size: ${({ theme = {} }) => theme.sizes.small};
+  font-size: ${({ theme = {} }) => theme.typography.sizes.small};
   font-family: ${({ theme = {} }) => theme.typography.primary.fontFamily};
   border-radius: 100px;
   padding: 10px;

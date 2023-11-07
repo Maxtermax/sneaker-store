@@ -15,12 +15,18 @@ const theme = {
     },
   },
   sizes: {
-    xlarge: '30px',
-    large: '20px',
-    medium: '16px',
-    small: '14px',
+    xlarge: '1400px',
+    large: '1200px',
+    medium: '1100px',
+    small: '350px',
   },
   typography: {
+    sizes: {
+      xlarge: '30px',
+      large: '20px',
+      medium: '2.5rem',
+      small: '14px',
+    },
     primary: {
       fontFamily: "Josefin Sans",
     },
