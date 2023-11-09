@@ -1,6 +1,9 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { Canvas } from "./Styles";
 import { MAGNIFYING_SIZE, ZOOM_FACTOR } from "@core/constants";
+import { Box, CircularProgress } from "@mui/material";
+import theme from "@core/theme";
+import { useImageLoader } from "@core/hooks/useImageLoader";
 
 function useDeviceDetect() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -14,6 +17,7 @@ function useDeviceDetect() {
 export const Zoom = (props) => {
   const image = useRef(new Image());
   const isTouchDevice = useDeviceDetect();
+  const isReady = useImageLoader(props.src);
 
   const drawBackground = useCallback(() => {
     const canvas = document.getElementById("zoom");
@@ -67,5 +71,29 @@ export const Zoom = (props) => {
     drawBackground();
     ctx.closePath();
   };
-  return <Canvas id="zoom" onMouseMove={handleMouseMove} />;
+  return (
+    <>
+      <Canvas id="zoom" onMouseMove={handleMouseMove} />
+      {!isReady ? (
+        <Box
+          sx={{
+            alignItems: "center",
+            display: "flex",
+            placeContent: "center",
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <CircularProgress
+            sx={{
+              "& svg": {
+                color: theme.colors.primary,
+              },
+            }}
+          />
+        </Box>
+      ) : null}
+    </>
+  );
 };

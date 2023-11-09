@@ -1,3 +1,3 @@
 import { Context } from 'hermes-io';
 
-export const ShoppingCarContext = new Context('ShoppingCarContext'); 
+export const ShoppingCartContext = new Context('ShoppingCartContext'); 

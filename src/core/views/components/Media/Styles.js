@@ -28,7 +28,7 @@ export const Image = styled.div`
   background-size: 78%;
   background-repeat: no-repeat;
   background-position: center bottom;
-  cursor: zoom-in;
+  cursor: ${(props) => props.src ? 'zoom-in' : 'default'};
   display: flex;
   transition: all 0.3s;
   position: relative;

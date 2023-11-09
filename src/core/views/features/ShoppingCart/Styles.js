@@ -38,13 +38,22 @@ export const Header = styled.header`
 
 export const Content = styled.div`
   background: ${({ theme = {} }) => theme.colors.primary};
-  width: 430px;
+  width: 410px;
   height: 100%;
   position: fixed;
+  padding: 20px;
+  padding-bottom: 0px;
   top: 0px;
   z-index: 2;
   overflow-y: auto;
+  & .arrows__left svg {
+    color: black;
+  }
+  & .arrows__right svg {
+    color: black;
+  }
   & .close-icon {
+    color: white;
     position: relative;
     left: calc(100% - 50px);
     top: 10px;
@@ -61,6 +70,8 @@ export const Total = styled.div`
   width: 90%;
   height: 2px;
   margin: 20px auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
 `;
 
 export const Container = styled.div`

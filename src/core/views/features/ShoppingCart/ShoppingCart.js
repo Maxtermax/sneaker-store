@@ -25,7 +25,7 @@ const StyledBadge = styled(Badge)(() => ({
   },
 }));
 
-const ShoppingCar = (props = {}) => {
+const ShoppingCart = (props = {}) => {
   const [showProducts, setShowProducts] = useState(false);
   const anchorRef = useRef(null);
   const { data = [] } = props;
@@ -82,4 +82,4 @@ const ShoppingCar = (props = {}) => {
   );
 };
 
-export default ShoppingCar;
+export default ShoppingCart;

@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Dialog, IconButton } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Dialog,
+  IconButton,
+  Skeleton,
+} from "@mui/material";
 import { Zoom } from "@core/views/components/Zoom/Zoom";
 import CloseIcon from "@mui/icons-material/Close";
 import {
@@ -12,6 +18,8 @@ import {
 } from "./Styles";
 import Arrows from "@core/views/components/Arrows/Arrows";
 import { useMediaImageIndex } from "@core/hooks/useMediaImageIndex";
+import { useImageLoader } from "@core/hooks/useImageLoader";
+import theme from "@core/theme";
 
 function useSizes() {
   const [sizes, setSizes] = useState({});
@@ -27,6 +35,36 @@ function useSizes() {
   }, []);
   return { sizes };
 }
+
+const ThumbnailLoader = (props) => {
+  const isReady = useImageLoader(props.src);
+  return (
+    <>
+      {!isReady ? (
+        <Box
+          sx={{
+            alignItems: "center",
+            display: "flex",
+            placeContent: "center",
+            width: "100px",
+            height: "100px",
+            border: `2px solid ${theme.colors.primary}`,
+          }}
+        >
+          <CircularProgress
+            sx={{
+              "& svg": {
+                color: theme.colors.primary,
+              },
+            }}
+          />
+        </Box>
+      ) : (
+        <Thumbnail {...props} />
+      )}
+    </>
+  );
+};
 
 const Media = (props) => {
   const { image = {} } = props;
@@ -72,11 +110,13 @@ const Media = (props) => {
       <ThumbnailContainer>
         {image.thumbnails.map((url, index) => (
           <ThumbnailButton key={url} onClick={handleSelectThumbnail(index)}>
-            <Thumbnail active={imageIndex === index} src={url} />
+            <ThumbnailLoader active={imageIndex === index} src={url} />
           </ThumbnailButton>
         ))}
       </ThumbnailContainer>
-      {isNotMobile ? <Arrows isVisible onBack={handleBack} onNext={handleNext} /> : null}
+      {isNotMobile ? (
+        <Arrows isVisible onBack={handleBack} onNext={handleNext} />
+      ) : null}
     </MediaContainer>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import Products from "@features/Products/Products";
-import ShoppingCar from "@features/ShoppingCar/ShoppingCar";
+import ShoppingCart from "@features/ShoppingCart/ShoppingCart";
 import theme from "@theme";
 import { useProducts } from './hooks/useProducts';
 
@@ -12,7 +12,7 @@ function App() {
   const { products } = useProducts();
   return (
     <ThemeProvider theme={theme}>
-      <ShoppingCar data={filterSelectes(products)} />
+      <ShoppingCart data={filterSelectes(products)} />
       <Products data={products} />
     </ThemeProvider>
   );

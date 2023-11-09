@@ -12,6 +12,9 @@ export const ThumbnailContainer = styled.div`
     gap: 10px;
     left: calc(50% - 200px);
   }
+  @media (max-width: 600px) {
+    bottom: 40px;
+  }
 `;
 
 export const ThumbnailButton = styled.button`
@@ -30,6 +33,7 @@ export const Thumbnail = styled.img`
   &:hover {
     border: 4px solid ${({ theme = {} }) => theme.colors.primary}};
   }
+  @media
 `;
 
 export const Content = styled.div`
