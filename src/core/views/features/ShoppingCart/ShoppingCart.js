@@ -8,9 +8,10 @@ import theme from "@theme";
 import { Slide } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import ProductsList from '@core/views/components/ProductList/ProductList';
-import { ADD_PRODUCTS, REMOVE_PRODUCTS } from '@core/constants';
+import { ADD_PRODUCTS, CLOSE_SHOPPING_CART, OPEN_SHOPPING_CART, REMOVE_PRODUCTS } from '@core/constants';
 import { ProductsContext } from '@core/contexts/Products';
 import { ProductsObserver } from '@core/observers/Products';
+import { useShoppingCart } from '@core/hooks/useShoppingCart';
 
 const calculateTotal = (data = []) =>
   data.reduce((acc, { price = 0 }) => acc + Number(price), 0);
@@ -31,7 +32,14 @@ const ShoppingCart = (props = {}) => {
   const { data = [] } = props;
   const total = calculateTotal(data);
 
+  useShoppingCart(({ value }) => {
+    const { type } = value;
+    if (type === OPEN_SHOPPING_CART) setShowProducts(true);
+    if (type === CLOSE_SHOPPING_CART) setShowProducts(false);
+  }) 
+
   const handleDisplayCar = () => setShowProducts(!showProducts);
+
   const handleAdd = (product) => {
     ProductsObserver.notify({
       value: { type: ADD_PRODUCTS, payload: product },
