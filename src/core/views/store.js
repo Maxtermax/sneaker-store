@@ -20,6 +20,7 @@ const products = [
       ],
     },
     description: "Air Jordan 3 Retro OG",
+    bio: "It's the return of a legend: the Tinker Hatfield design that solidified MJ's relationship with Nike returns to its original 1988 form. Passion red and white detailing and cracked black and iron gray leather on the toe and heel nod to the iconic release, while 'NIKE AIR' written across the back gives it an eye-catching retro touch. And speaking of Air, you can count on proven underfoot cushioning to keep you moving.",
     discount: 0,
     sizes: [8, 8.5, 9, 10],
     price: 250,

@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import { Box, IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
-export default function MessageForm({ onSubmit }) {
+export default function MessageForm({ onSubmit, isChatEnabled }) {
   const messageInputRef = useRef(null);
   const [isInvalidField, setIsInvalidField] = useState(false);
   const handleSubmit = (e) => {
@@ -13,7 +13,7 @@ export default function MessageForm({ onSubmit }) {
     setIsInvalidField(false);
     onSubmit?.(value);
     e.target.reset();
-  }
+  };
   return (
     <Box
       sx={{
@@ -35,6 +35,7 @@ export default function MessageForm({ onSubmit }) {
           paddingRight: "5px",
           width: "100%",
         }}
+        disabled={!isChatEnabled}
         error={isInvalidField}
         required
         inputRef={messageInputRef}
@@ -42,7 +43,7 @@ export default function MessageForm({ onSubmit }) {
         placeholder="Type a message"
         variant="filled"
       />
-      <IconButton type="submit">
+      <IconButton type="submit" disabled={!isChatEnabled}>
         <SendIcon />
       </IconButton>
     </Box>

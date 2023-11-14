@@ -8,7 +8,7 @@ import { ADD_PRODUCTS, REMOVE_PRODUCTS } from '@core/constants';
 export const useProducts = () => {
   const [products, setProducts] = useState(productsStore.get("collection"));
 
-  const handleRemoveProduct = (product) => {
+  const removeProduct = (product) => {
     const products = [...productsStore.get("collection")].map((item) => {
       if (item.id === product.id) item.selected = false;
       return item;
@@ -16,7 +16,7 @@ export const useProducts = () => {
     setProducts(products);
   };
 
-  const handleAddProduct = (product) => {
+  const addProduct = (product) => {
     const products = [...productsStore.get("collection")].map((item) => {
       if (item.id === product.id) item.selected = true;
       return item;
@@ -27,8 +27,8 @@ export const useProducts = () => {
   const handleUseProductsNotification = (event) => {
     const { value = '' } = event;
     const { type, payload } = value;
-    if (type === ADD_PRODUCTS) return handleAddProduct(payload);
-    if (type === REMOVE_PRODUCTS) return handleRemoveProduct(payload);
+    if (type === ADD_PRODUCTS) return addProduct(payload);
+    if (type === REMOVE_PRODUCTS) return removeProduct(payload);
   };
   useObserver({
     contexts: [ProductsContext],

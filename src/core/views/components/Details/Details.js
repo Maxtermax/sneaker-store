@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  CircularProgress,
-  Dialog,
-  IconButton,
-  Skeleton,
-} from "@mui/material";
+import { Box, CircularProgress, Dialog, IconButton } from "@mui/material";
+import { createPortal } from "react-dom";
 import { Zoom } from "@core/views/components/Zoom/Zoom";
 import CloseIcon from "@mui/icons-material/Close";
 import {
@@ -20,6 +15,7 @@ import Arrows from "@core/views/components/Arrows/Arrows";
 import { useMediaImageIndex } from "@core/hooks/useMediaImageIndex";
 import { useImageLoader } from "@core/hooks/useImageLoader";
 import theme from "@core/theme";
+import { DRAWER_WIDTH } from "@core/constants";
 
 function useSizes() {
   const [sizes, setSizes] = useState({});
@@ -121,9 +117,27 @@ const Media = (props) => {
   );
 };
 
-export const Details = (props) => {
+export const Details = (props = {}) => {
+  const { data = {} } = props;
+  const { isOpenFromChat = false } = data ?? {};
+  const PaperProps = {};
+  if (isOpenFromChat) {
+    PaperProps.sx = {
+      left: 0,
+      position: "fixed",
+      width: `calc(100% - ${DRAWER_WIDTH})`,
+    };
+  }
   return (
-    <Dialog open={props.open} fullWidth fullScreen>
+    <Dialog
+      slots={{
+        backdrop: () => null,
+      }}
+      open={props.open}
+      PaperProps={PaperProps}
+      fullWidth
+      fullScreen
+    >
       <Content>
         <Close>
           <IconButton onClick={props.onClose}>
