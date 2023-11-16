@@ -7,7 +7,7 @@ import { formatDate, s4 } from "@src/utils/formatter";
 import { useChatBotManager } from "@core/hooks/useChatBotManager";
 
 export function ChatBox() {
-  const { runSquence, isChatEnabled, messages, setMessages } = useChatBotManager();
+  const { executeSequence, isChatEnabled, messages, setMessages } = useChatBotManager();
   const handleSubmit = (text = "") => {
     let direction = MESSAGE_DIRECTIONS.OUT;
     setMessages((prevValue) => {
@@ -20,7 +20,7 @@ export function ChatBox() {
       };
       return [...prevValue, message];
     });
-    runSquence(text);
+    executeSequence(text);
   };
   return (
     <Box>

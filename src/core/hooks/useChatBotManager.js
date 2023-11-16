@@ -234,7 +234,17 @@ const steps = ({ setMessages, setIsChatEnabled }) => {
 export const options = [
   {
     id: "RECOMMEND_PRODUCT",
-    keywords: ["recommend"],
+    keywords: [
+      "recommend",
+      "obtain",
+      "reach",
+      "counsel",
+      "guide",
+      "commend",
+      "suggest",
+      "prescribe",
+      "support",
+    ],
     description: "Recommend products.",
     steps,
   },
@@ -278,16 +288,46 @@ export const useChatBotManager = (cb) => {
       return cb?.({ isOpen: false });
     }
   };
-  const runSquence = (input = "") => {
-    const option = options.find((option) => option.keywords.includes(input));
-    if (option) {
-      option.steps({ setMessages, setIsChatEnabled });
+
+  const executeSequence = (input = "") => {
+    const matchOption = options.find((option) =>
+      option.keywords.some((keyword) => input.toLowerCase().indexOf(keyword.toLowerCase()) !== -1)
+    );
+    if (matchOption) {
+      matchOption.steps({ setMessages, setIsChatEnabled });
+      return;
     }
+    const payload = buildMessagePayload();
+    setMessages((messages) => [
+      ...messages,
+      {
+        ...payload,
+        content:
+          "Sorry, i am not able to response that yet 😔, my creator is working for make me smarter 🧠",
+      },
+    ]);
+
+    setMessages((messages) => [
+      ...messages,
+      {
+        ...payload,
+        content: (
+          <Box>
+            <p>I might help you if you use the keywords:</p>
+            <ul>
+              {options[0].keywords.map((keyword) => (
+                <li key={keyword}>{keyword}</li>
+              ))}
+            </ul>
+          </Box>
+        ),
+      },
+    ]);
   };
   useObserver({
     contexts: [ContextChatBotManager],
     observer: ObserverChatBotManager,
     listener: handleChatBotManagerNotification,
   });
-  return { runSquence, isChatEnabled, messages, setMessages };
+  return { executeSequence, isChatEnabled, messages, setMessages };
 };
