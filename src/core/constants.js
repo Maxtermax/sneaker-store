@@ -7,6 +7,8 @@ export const SET_SIZES = {
   MEDIUM: '500',
   LARGE: '700'
 };
+export const TAKE_SNAPSHOT = 'TAKE_SNAPSHOT';
+export const PRODUCTS_SNAPSHOT = 'PRODUCTS_SNAPSHOT';
 export const OPEN_PRODUCT_DETAILS = 'OPEN_PRODUCT_DETAILS';
 export const MESSAGE_DIRECTIONS = { IN: 'IN', OUT: 'OUT' }
 export const OPEN_SHOPPING_CART = 'OPEN_SHOPPING_CART';

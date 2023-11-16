@@ -14,7 +14,7 @@ import { ProductsObserver } from '@core/observers/Products';
 import { useShoppingCart } from '@core/hooks/useShoppingCart';
 
 const calculateTotal = (data = []) =>
-  data.reduce((acc, { price = 0 }) => acc + Number(price), 0);
+  data.reduce((acc, { value = 0 }) => acc + Number(value), 0);
 
 const StyledBadge = styled(Badge)(() => ({
   "& .MuiBadge-badge": {

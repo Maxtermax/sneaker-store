@@ -1,10 +1,13 @@
 import React from "react";
 import ProductsList from "@components/ProductList/ProductList";
 import { ProductsObserver } from "@core/observers/Products";
+import { ChatBotManager as ObserverChatBotManager } from "@observers/ChatBotManager";
+import { ChatBotManager as ContextChatBotManager } from "@contexts/ChatBotManager";
 import { ADD_PRODUCTS, REMOVE_PRODUCTS } from "@core/constants";
 import { ProductsContext } from "@core/contexts/Products";
 import { Details } from '@core/views/components/Details/Details';
 import { useProductDetails } from "@hooks/useProductDetails";
+import { CLOSE_CHAT } from "@core/constants";
 
 export default function Products(props = {}) {
   const { data = [] } = props;
@@ -26,7 +29,15 @@ export default function Products(props = {}) {
     });
   };
 
-  const handleClose = () => setDialog(false);
+  const handleClose = () => {
+    setDialog(false);
+      ObserverChatBotManager.notify({
+        context: ContextChatBotManager,
+        value: {
+          type: CLOSE_CHAT,
+        },
+      });
+  };
 
   return (
     <>

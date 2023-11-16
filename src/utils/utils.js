@@ -1,3 +1,6 @@
+import { MESSAGE_DIRECTIONS } from '@core/constants';
+import { formatDate, s4 } from './formatter';
+
 export const execute = (promise) => {
   return promise
     .then((result) => ({ ok: true, result, error: null }))
@@ -24,3 +27,17 @@ export const delay = (ms) => {
     }, ms);
   })
 }
+
+export const buildMessagePayload = () => ({
+  id: s4(),
+  direction: MESSAGE_DIRECTIONS.IN,
+  time: formatDate(new Date()),
+});
+
+export const getUniqueRandomIndex = () => {
+
+}
+
+export function getRandomUniqueIndexes(array) {
+}
+

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useObserver } from "hermes-io";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Drawer from "@mui/material/Drawer";
@@ -13,11 +14,23 @@ import { ChatBotManager as ObserverChatBotManager } from "@core/observers/ChatBo
 import { ChatBotManager as ContextChatBotManager } from "@core/contexts/ChatBotManager";
 import { ProductDetailsObserver } from "@core/observers/Zoom";
 import { ProductDetailsContext } from "@core/contexts/Zoom";
-import { FabButton } from './FabButton';
-import { ChatBox } from './ChatBox';
+import { FabButton } from "./FabButton";
+import { ChatBox } from "./ChatBox";
 
 function Chat() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleChatBotManagerNotification = (event) => {
+    const { value = {} } = event;
+    const { type } = value;
+    if (type === CLOSE_CHAT) setIsOpen(false);
+  };
+  useObserver({
+    contexts: [ContextChatBotManager],
+    observer: ObserverChatBotManager,
+    listener: handleChatBotManagerNotification,
+  });
+
   const handleDrawerDisplayToggle = () => {
     const newValue = !isOpen;
     setIsOpen(newValue);

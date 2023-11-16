@@ -48,6 +48,9 @@ const products = [
     description: "Bad Bunny Forum Buckle Low sneakers",
     discount: 30,
     name: "Adidas Forum",
+    bio: `
+      The Bad Bunny Forum Buckle Low sneakers are made with high-quality materials and construction, and they are designed to be comfortable to wear all day long. The sneakers have a padded collar and tongue, and the insole is made of breathable material.
+    `,
     price: 200,
     value: 140,
     sizes: [8, 8.5, 9, 10],
@@ -71,9 +74,12 @@ const products = [
         "/assets/images/addidas/700x700/response_3.png",
       ],
     },
-    description: "Bad Bunny response",
+    description: "Bad Bunny 'Paso fino'",
     discount: 30,
-    name: "Adidas Bad Bunny response",
+    name: "Bad Bunny 'Paso fino'",
+    bio: `
+      Bad Bunny is not afraid of color, and his sneakers reflect this. His designs often feature bright and unexpected color combinations that are sure to turn heads.
+    `, 
     price: 240,
     value: 140,
     sizes: [8, 8.5, 9, 10],

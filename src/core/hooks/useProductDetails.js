@@ -1,12 +1,14 @@
-import { useObserver } from 'hermes-io';
+import { useObserver } from "hermes-io";
 import { ProductDetailsObserver } from "@observers/Zoom";
 import { ProductDetailsContext } from "@contexts/Zoom";
-import { useState } from 'react';
-import { OPEN_PRODUCT_DETAILS, CLOSE_PRODUCT_DETAILS } from '@core/constants';
+import { ChatBotManager as ObserverChatBotManager } from "@observers/ChatBotManager";
+import { ChatBotManager as ContextChatBotManager } from "@contexts/ChatBotManager";
+import { useState } from "react";
+import { OPEN_PRODUCT_DETAILS, CLOSE_PRODUCT_DETAILS, CLOSE_CHAT } from "@core/constants";
 
 export const useProductDetails = () => {
   const [openDialog, setDialog] = useState(false);
-  const [image, setImage] = useState(null); 
+  const [image, setImage] = useState(null);
   const handleZoomNotification = (event) => {
     const { value = {} } = event;
     const { type, payload } = value;
@@ -17,6 +19,12 @@ export const useProductDetails = () => {
     if (type === CLOSE_PRODUCT_DETAILS) {
       setDialog(false);
       setImage(null);
+      ObserverChatBotManager.notify({
+        context: ContextChatBotManager,
+        value: {
+          type: CLOSE_CHAT,
+        },
+      });
     }
   };
   useObserver({
@@ -25,4 +33,4 @@ export const useProductDetails = () => {
     listener: handleZoomNotification,
   });
   return { openDialog, setDialog, image };
-}
+};
