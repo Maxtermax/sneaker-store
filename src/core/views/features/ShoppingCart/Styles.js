@@ -20,13 +20,23 @@ export const Anchor = styled.div`
   }
 `;
 
+
+export const MadeBy = styled.a`
+  color: ${({ theme = {} }) => theme.colors.contrast.primary};
+  font-family: ${({ theme = {} }) => theme.typography.secondary.fontFamily};
+  font-size: 16px;
+  text-decoration: none;
+`
+
 export const Header = styled.header`
+  align-items: center;
   background: ${({ theme = {} }) => theme.colors.primary};
   margin-bottom: 20px;
   width: 100%;
   height: 80px;
   display: flex;
-  justify-content: flex-end;
+  padding-left: 20px;
+  justify-content: space-between;
   z-index: 2;
   .car {
     margin-right: 40px;

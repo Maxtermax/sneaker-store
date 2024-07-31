@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Content, Header, Total } from "./Styles";
+import { Content, Header, MadeBy, Total } from "./Styles";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
@@ -60,6 +60,7 @@ const ShoppingCart = (props = {}) => {
   return (
     <>
       <Header>
+        <MadeBy href="https://www.maxtermax.dev/" target="_blank">maxtermax.dev</MadeBy>
         <IconButton
           ref={anchorRef}
           className="car"
